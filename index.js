@@ -1,6 +1,3 @@
-// Nome do Filme, Imagem, Trilha, Genero, Titulo
-// CREATE, READ, UPDATE, DELETE
-
 const express = require('express');
 const cors = require('cors');
 

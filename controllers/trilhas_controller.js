@@ -1,7 +1,7 @@
 const dotenv = require('dotenv').config();
 const monk = require('monk');
 
-const db = monk('mongodb://davigl:davigl1234@ds123664.mlab.com:23664/trilhas-db');
+const db = monk(process.env.MONGO_URL);
 
 const trilhas = db.get('trilhas');
 const request = require('request');
@@ -9,16 +9,9 @@ const request = require('request');
 var capasController = require('./photos_controller');
 
 /*
-Auxiliar Method
+	Método auxiliar no qual verifica se uma trilha é válida.
 
-- Verify if tracks is valid.
-
-These Elements cannot be empty:
-
-titulo:string
-nome_filme:string
-imagem:string
-
+	Parâmetros: trilha:json
 */
 
 function trilhaValida(trilha) {
@@ -39,10 +32,9 @@ function index(req,res) {
 
 
 /*
-GET Method
+	Método GET
 
-- Get all created tracks.
-
+	Busca todas as trilhas criadas.
 */
 
 function all_trilhas(req,res) {
@@ -51,12 +43,11 @@ function all_trilhas(req,res) {
 
 
 /*
-Get Method
+	Método GET
 
-- Get one track.
+	Busca uma trilha.
 
-Params
-id:integer
+	Parâmetro: id_param:int
 */
 
 function show_trilha(req,res) {
@@ -76,14 +67,12 @@ function show_trilha(req,res) {
 
 
 /*
-POST Method 
+	Método POST
 
-- Creates a track.
+	Cria uma trilha.
 
-Body Elements
-
-id:integer, titulo:string, nome_filme:string, imagem:string, 
-genero:string, trilha:string, created:date
+	Parâmetros: id:integer, titulo:string, nome_filme:string, imagem:string, 
+	genero:string, trilha:string, created:date
 */
 
 function create_trilha(req,res) {
@@ -111,14 +100,12 @@ function create_trilha(req,res) {
 
 
 /*
-PUT Method
+	Método PUT
 
-- Updates a track.
+	Atualiza uma Trilha.
 
-Body Elements
-
-id:integer, titulo:string, nome_filme:string, imagem:string, 
-genero:string, trilha:string, created:date
+	Parâmetros: id:integer, titulo:string, nome_filme:string, imagem:string, 
+	genero:string, trilha:string, created:date
 */
 
 
@@ -151,12 +138,11 @@ function update_trilha(req,res) {
 
 
 /*
-Delete Method
+	Método DELETE
 
-- Delete one created track.
-
-Params
-id:integer
+	Deleta uma trilha.
+	
+	Parâmetro: id:integer
 */
 
 function remove_trilha(req,res) {

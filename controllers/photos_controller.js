@@ -1,10 +1,11 @@
 const cloudinary = require('cloudinary').v2;
+const dotenv = require('dotenv').config();
 const multer = require('multer');
 
 cloudinary.config({ 
-	cloud_name: 'hasashisama', 
-	api_key: '677715892525891', 
-	api_secret: 'y-GvcNlFAanyi6IyYCHl9asNPNA'
+	cloud_name: process.env.CLOUD_NAME, 
+	api_key: process.env.API_KEY, 
+	api_secret: process.env.API_SECRET
 });
 
 module.exports.wire = function (app) {
@@ -26,11 +27,11 @@ module.exports.wire = function (app) {
 		const path = req.file.path;
 		const uniqueFilename = new Date().toISOString();
 
-		cloudinary.uploader.upload(path, { public_id: `trilha/${uniqueFilename}`, tags: `trilhas` }, // directory and tags are optional
+		cloudinary.uploader.upload(path, { public_id: `trilha/${uniqueFilename}`, tags: `trilhas` },
 	      function(err, image) {
 	        if (err) return res.send(err)
 	        console.log('file uploaded to Cloudinary')
-	        // remove file from server
+
 	        const fs = require('fs')
 	        fs.unlinkSync(path)
 
