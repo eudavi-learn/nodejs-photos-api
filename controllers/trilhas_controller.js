@@ -30,7 +30,6 @@ function index(req,res) {
 	});
 }
 
-
 /*
 	Método GET
 
@@ -40,7 +39,6 @@ function index(req,res) {
 function all_trilhas(req,res) {
 	trilhas.find().then(trilhas => res.json(trilhas));
 }
-
 
 /*
 	Método GET
@@ -64,7 +62,6 @@ function show_trilha(req,res) {
 			}
 	});
 }
-
 
 /*
 	Método POST
@@ -98,7 +95,6 @@ function create_trilha(req,res) {
 	}
 }
 
-
 /*
 	Método PUT
 
@@ -107,7 +103,6 @@ function create_trilha(req,res) {
 	Parâmetros: id:integer, titulo:string, nome_filme:string, imagem:string, 
 	genero:string, trilha:string, created:date
 */
-
 
 function update_trilha(req,res) {
 	id_param = parseInt(req.params.id);
@@ -135,7 +130,6 @@ function update_trilha(req,res) {
 		});
 	}
 }
-
 
 /*
 	Método DELETE
