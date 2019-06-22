@@ -9,7 +9,6 @@ cloudinary.config({
 });
 
 module.exports.wire = function (app) {
-
 	const storage = multer.diskStorage({
 		destination: function(req, file, cb) {
 			cb(null, 'uploads/')
@@ -23,7 +22,6 @@ module.exports.wire = function (app) {
 	const upload = multer({ storage : storage });
 
 	app.post('/upload', upload.single('imagem'), function(req, res, next) {
-		
 		const path = req.file.path;
 		const uniqueFilename = new Date().toISOString();
 
